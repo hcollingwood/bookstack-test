@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bookstack
-  namespace: bookstack
-spec: 
+spec:
   replicas: 1
   selector:
     matchLabels:
@@ -14,16 +13,18 @@ spec:
         app: bookstack
     spec:
       containers:
-      - name: bookstack
-        image: linuxserver/bookstack:latest
-        env:
-        - name: DB_HOST
-          value: mysql-service
-        - name: DB_DATABASE
-          value: bookstack
-        - name: DB_USERNAME
-          value: admin
-        - name: DB_PASSWORD
-          value: password
-        - name: DB_PASS
-          value: password
+        - name: bookstack
+          image: linuxserver/bookstack:latest
+          env:
+            - name: APP_URL
+              value: bookstack.test.com
+            - name: DB_HOST
+              value: mysql-service
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_DATABASE
+              value: bookstack
+            - name: DB_USER
+              value: db_user
+            - name: DB_PASS
+              value: password

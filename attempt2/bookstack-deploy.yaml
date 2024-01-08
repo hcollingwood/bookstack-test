@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstack
+  namespace: bookstack
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookstack
+  template:
+    metadata:
+      labels:
+        app: bookstack
+    spec:
+      containers:
+      - name: bookstack
+        image: linuxserver/bookstack:latest
+        env:
+        - name: DB_HOST
+          value: mysql-service
+        - name: DB_DATABASE
+          value: bookstack
+        - name: DB_USERNAME
+          value: admin
+        - name: DB_PASSWORD
+          value: password
+        - name: DB_PASS
+          value: password

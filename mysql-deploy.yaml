@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespace: bookstack
 spec:
   replicas: 1
   selector:
@@ -14,18 +13,23 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: bookstack
-        image: mysql:latest
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: password
-        - name: MYSQL_PASSWORD
-          value: password
-        - name: DB_DATABASE
-          value: bookstack
-        - name: DB_USERNAME
-          value: admin
-        - name: DB_PASSWORD
-          value: password
-        - name: DB_PASS
-          value: password
+        - name: bookstack
+          image: mysql:latest
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: admin_password
+            - name: MYSQL_USER
+              value: db_user
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: bookstack
+          volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim

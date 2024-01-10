@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: APP_URL
-              value: http://192.168.49.2:31084
+              value: my_app_url
             - name: DB_HOST
               value: mysql-service
             - name: DB_PORT

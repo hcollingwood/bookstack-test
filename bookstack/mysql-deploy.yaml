@@ -27,9 +27,9 @@ spec:
             - name: MYSQL_DATABASE
               value: bookstack
           volumeMounts:
-          - name: mysql-persistent-storage
-            mountPath: /var/lib/mysql
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc

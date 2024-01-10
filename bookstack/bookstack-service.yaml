@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: bookstack-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: bookstack
   ports:

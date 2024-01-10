@@ -16,10 +16,10 @@ spec:
         - name: bookstack
           image: linuxserver/bookstack:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
             - name: APP_URL
-              value: my_app_url
+              value: https://bookstack.test.com
             - name: DB_HOST
               value: mysql-service
             - name: DB_PORT
